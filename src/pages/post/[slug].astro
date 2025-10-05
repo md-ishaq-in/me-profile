@@ -1,28 +1,46 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
-import PostLayout from '../../layouts/post.astro';
-import { calculateReadingTime } from '../../utils/blog';
+import PostLayout from "../../layouts/post.astro";
+import { calculateReadingTime } from "../../utils/blog";
 
 export async function getStaticPaths() {
-	const postEntries = await getCollection("post");
-	return postEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+  const postEntries = await getCollection("post");
+
+  // Log for debugging (optional)
+  console.log("✅ Loaded posts:", postEntries.length);
+
+  return postEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
+
+// 🧠 Safety check to avoid the "undefined render" error
+if (!entry) {
+  throw new Error("❌ No post entry found for this slug.");
+}
+
 const { Content } = await entry.render();
 
 const readingTime = calculateReadingTime(entry.body);
 
-// Create a new frontmatter object to pass to the layout
 const frontmatter = {
-    ...entry.data,
-    readingTime: readingTime,
-    dateFormatted: entry.data.date ? new Date(entry.data.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
+  ...entry.data,
+  readingTime,
+  dateFormatted: entry.data.date
+    ? new Date(entry.data.date).toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "",
 };
 ---
+
 <PostLayout frontmatter={frontmatter}>
-    <Content />
+  <Content />
 </PostLayout>

@@ -25,17 +25,17 @@
 }
 
 html.dark #darkToggle:hover .horizon {
-  border-color: #718096 !important;
+  border-color: #967771 !important;
 }
 
 html.dark {
     color-scheme: dark;
-    background-color: #101826; /* deep blue background */
+    background-color: #ba480a; /* deep blue background */
     color: #e0e6ed;           /* soft light blue-gray text */
 }
 
 html.dark body {
-    background-color: #101826;
+    background-color: #c20f0f;
     color: #e0e6ed;
 }
 
@@ -46,16 +46,16 @@ html.dark a {
 html.dark header,
 html.dark footer,
 html.dark nav {
-    background-color: #162033; /* slightly lighter deep blue */
+    background-color: #000000; /* slightly lighter deep blue */
 }
 
 html.dark .card,
 html.dark .section,
 html.dark main {
-    background-color: #18243a; /* card/section blue */
+    background-color: #252425; /* card/section blue */
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(16,24,38,0.4);
-    color: #e0e6ed;
+    box-shadow: 0 2px 8px rgba(234, 230, 229, 0.958);
+    color: #ededed;
 }
 
 .horizon .setting {
