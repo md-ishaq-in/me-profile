@@ -1,12 +1,10 @@
 name: Deploy Astro to GitHub Pages
 
-# Trigger workflow on push to main
 on:
   push:
     branches:
       - main
 
-# Required permissions for deploy-pages action
 permissions:
   contents: read
   pages: write
@@ -15,32 +13,34 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
 
     steps:
-      # 1️⃣ Checkout repository
+      # Checkout repository
       - uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
+      # Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # 3️⃣ Install dependencies
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Build Astro project
+      # Build Astro project
       - name: Build website
         run: npm run build
 
-      # 5️⃣ Upload build artifact
+      # Upload build artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      # 6️⃣ Deploy to GitHub Pages
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 
