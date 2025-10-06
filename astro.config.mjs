@@ -7,4 +7,8 @@ export default defineConfig({
   base: "/portfolio-test/", // your repo name
   output: "static",
   integrations: [tailwind()],
+  vite: {
+    assetsInclude: ["**/*.md"]
+  }
 });
+
