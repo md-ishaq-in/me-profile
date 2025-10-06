@@ -1,13 +1,14 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel/serverless'; // ✅ use /serverless path
+import vercel from '@astrojs/vercel'; // ✅ Official recommended import
 
 export default defineConfig({
-  output: 'server',
-  adapter: vercel(),
+  output: 'server', // Needed for SSR (server functions, email backend, etc.)
+  adapter: vercel({
+    runtime: 'nodejs18.x', // ✅ or 'edge' if you prefer Edge Runtime
+  }),
   integrations: [tailwind()],
 });
-;
 
 
 
