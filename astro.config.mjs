@@ -9,4 +9,8 @@ export default defineConfig({
   vite: {
     assetsInclude: ["**/*.md"]
   }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 7288e3b (update astro)
