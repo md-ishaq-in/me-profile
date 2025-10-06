@@ -1,12 +1,15 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 
-console.log("✅ API loaded: /api/send-email is ready");
-
 export const POST: APIRoute = async ({ request }) => {
   try {
-    console.log("Email user:", import.meta.env.ASTRO_EMAIL_USER);
-    console.log("Email pass exists:", !!import.meta.env.ASTRO_EMAIL_PASS);
+    const user = import.meta.env.ASTRO_EMAIL_USER;
+    const pass = import.meta.env.ASTRO_EMAIL_PASS;
+
+    if (!user || !pass) {
+      console.error("⚠ ASTRO_EMAIL_USER or ASTRO_EMAIL_PASS is missing!");
+      return new Response(JSON.stringify({ message: 'Server misconfiguration' }), { status: 500 });
+    }
 
     const { name, email, message } = await request.json();
 
@@ -16,26 +19,15 @@ export const POST: APIRoute = async ({ request }) => {
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      auth: {
-        user: import.meta.env.ASTRO_EMAIL_USER,
-        pass: import.meta.env.ASTRO_EMAIL_PASS,
-      },
+      auth: { user, pass },
     });
 
     await transporter.sendMail({
-    from: `"${name} (${email})" <${import.meta.env.ASTRO_EMAIL_USER}>`,
-    replyTo: email,
-    to: import.meta.env.ASTRO_EMAIL_USER,
-    subject: `📬 New Email from your portfolio Name : ${name}`,
-    html: `
-      <h2>New message from your portfolio contact form</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <p style="white-space: pre-wrap;">${message}</p>
-      <hr />
-      <p style="font-size: 12px; color: gray;">This message was sent from your portfolio website form.</p>
-    `,
+      from: `"${name} (${email})" <${user}>`,
+      replyTo: email,
+      to: user,
+      subject: `📬 New Email from Portfolio: ${name}`,
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message}</p>`,
     });
 
     return new Response(JSON.stringify({ message: 'Email sent successfully!' }), { status: 200 });

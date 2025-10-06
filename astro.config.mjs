@@ -1,11 +1,11 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel'; // ✅ Official recommended import
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  output: 'server', // Needed for SSR (server functions, email backend, etc.)
+  output: "server",
   adapter: vercel({
-    runtime: 'nodejs18.x', // ✅ or 'edge' if you prefer Edge Runtime
+    runtime: "nodejs18.x",
   }),
   integrations: [tailwind()],
 });
