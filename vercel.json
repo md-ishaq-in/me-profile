@@ -5,7 +5,10 @@
   "framework": "astro",
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs18.x"
+      "runtime": "vercel-nodejs@18.0.0"
+    },
+    "api/**/*.ts": {
+      "runtime": "vercel-nodejs@18.0.0"
     }
   }
 }
