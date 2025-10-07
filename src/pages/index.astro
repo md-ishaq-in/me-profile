@@ -6,12 +6,13 @@ import Writings from "../components/home/writings.astro";
 import Layout from "../layouts/main.astro";
 ---
 
-<!-- 👇 Add showContact={true} here -->
+<!-- 👇 Added showContact={true} -->
 <Layout title="Muhammad Ishaq" showContact={true}>
   <div
     class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
   >
     <div class="flex flex-col items-center md:flex-row">
+      <!-- LEFT TEXT SECTION -->
       <div class="relative w-full md:w-1/2">
         <p align="center">
           <a href="https://github.com/muhammadiishaq">
@@ -43,22 +44,28 @@ import Layout from "../layouts/main.astro";
           <li>and more...</li>
         </ul>
 
-        <Button text="Follow me on linkedin" link="https://www.linkedin.com/in/muhammadishaq-khan/" />
+        <Button text="Follow me on LinkedIn" link="https://www.linkedin.com/in/muhammadishaq-khan/" />
         <Button text="Follow me on GitHub" link="https://github.com/muhammadiishaq" /> 
       </div>
 
-      <div class="relative justify-end hidden w-full mt-10 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0">
+      <!-- RIGHT IMAGE SECTION (now visible on mobile too) -->
+      <div class="relative justify-end w-full mt-10 flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0">
         <div class="relative z-50 w-full flex justify-center">
           <div class="relative group">
+            <!-- Outer Glow -->
             <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500 opacity-40 blur-3xl animate-pulse"></div>
+
+            <!-- Inner Border with stripes -->
             <div class="absolute inset-0 border-4 border-yellow-400 rounded-2xl overflow-hidden">
-              <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.15) 75%,transparent 75%,transparent)] bg-[length:50px_50px] animate-[moveStripes_4s_linear_infinite] rounded-2xl"></div>
+              <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.15)25%,transparent25%,transparent50%,rgba(255,255,255,0.15)50%,rgba(255,255,255,0.15)75%,transparent75%,transparent)] bg-[length:50px_50px] animate-[moveStripes_4s_linear_infinite] rounded-2xl"></div>
             </div>
+
+            <!-- Profile Image -->
             <img
               src="/assets/images/photo1.png"
               loading="eager"
               decoding="auto"
-              class="relative z-10 w-full max-w-md rounded-2xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-2"
+              class="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md rounded-2xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-2"
               alt="Muhammad Ishaq"
             />
           </div>
@@ -67,6 +74,7 @@ import Layout from "../layouts/main.astro";
     </div>
   </div>
 
+  <!-- PROJECTS + WRITINGS -->
   <Separator text="Check out my projects" link="#projects" />
   <Projects />
   <Separator text="Some of my writing" link="#writings" />
