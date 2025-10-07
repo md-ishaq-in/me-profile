@@ -6,14 +6,15 @@ import Writings from "../components/home/writings.astro";
 import Layout from "../layouts/main.astro";
 ---
 
-<!-- 👇 Added showContact={true} -->
 <Layout title="Muhammad Ishaq" showContact={true}>
   <div
     class="relative z-20 w-full max-w-4xl mx-auto mt-16 px-7 md:mt-24 lg:mt-32 xl:px-0"
   >
-    <div class="flex flex-col items-center md:flex-row">
+    <!-- Responsive Flex: column on mobile, row on desktop -->
+    <div class="flex flex-col-reverse items-center md:flex-row">
+      
       <!-- LEFT TEXT SECTION -->
-      <div class="relative w-full md:w-1/2">
+      <div class="relative w-full md:w-1/2 mt-8 md:mt-0">
         <p align="center">
           <a href="https://github.com/muhammadiishaq">
             <img 
@@ -23,18 +24,21 @@ import Layout from "../layouts/main.astro";
           </a>
         </p>
 
-        <h1 class="mb-5 text-4xl font-bold leading-tight md:text-4xl lg:text-6xl dark:text-white">
+        <!-- Heading -->
+        <h1 class="mb-5 text-4xl font-bold leading-tight text-center md:text-left md:text-4xl lg:text-6xl dark:text-white">
           Hello, <br /> I'm Muhammad Ishaq
         </h1>
-        <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
+
+        <!-- About -->
+        <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400 text-center md:text-left">
           I'm a DevOps engineer from Karachi, Pakistan. <br class="hidden lg:block" />
           Passionate about building scalable infrastructure and automating everything from deployment to delivery. I specialize in Docker, Kubernetes, CI/CD pipelines, and cloud platforms like AWS and Azure. With hands-on experience in Linux administration and Python development, I bridge the gap between development and operations to ensure smooth, reliable software delivery.
         </p>
 
-        <p class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200">
+        <p class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200 text-center md:text-left">
           I can help you out with:
         </p>
-        <ul class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400">
+        <ul class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400 text-left">
           <li>DevOps Engineering & Automation</li>
           <li>Infrastructure as Code (IaC) & Scalable Architectures</li>
           <li>Cloud & Edge Computing Solutions</li>
@@ -44,14 +48,16 @@ import Layout from "../layouts/main.astro";
           <li>and more...</li>
         </ul>
 
-        <Button text="Follow me on LinkedIn" link="https://www.linkedin.com/in/muhammadishaq-khan/" />
-        <Button text="Follow me on GitHub" link="https://github.com/muhammadiishaq" /> 
+        <div class="flex flex-col sm:flex-row sm:space-x-4 mt-6 items-center md:items-start">
+          <Button text="Follow me on LinkedIn" link="https://www.linkedin.com/in/muhammadishaq-khan/" />
+          <Button text="Follow me on GitHub" link="https://github.com/muhammadiishaq" /> 
+        </div>
       </div>
 
-      <!-- RIGHT IMAGE SECTION (now visible on mobile too) -->
-      <div class="relative justify-end w-full mt-10 flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0">
+      <!-- RIGHT IMAGE SECTION -->
+      <div class="relative justify-center flex w-full md:w-1/2 mb-6 md:mb-0">
         <div class="relative z-50 w-full flex justify-center">
-          <div class="relative group">
+          <div class="relative group w-full max-w-xs sm:max-w-sm md:max-w-md">
             <!-- Outer Glow -->
             <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500 opacity-40 blur-3xl animate-pulse"></div>
 
@@ -65,7 +71,7 @@ import Layout from "../layouts/main.astro";
               src="/assets/images/photo1.png"
               loading="eager"
               decoding="auto"
-              class="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md rounded-2xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-2"
+              class="relative z-10 w-full rounded-2xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-2"
               alt="Muhammad Ishaq"
             />
           </div>
